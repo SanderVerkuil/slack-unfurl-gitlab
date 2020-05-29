@@ -34,4 +34,22 @@
         short: true
   -
     - 'GitLab/tag-v5.0.0.json'
+
+-
+  - 'https://gitlab.com/gitlab-org/gitlab/-/tags/v6.0.0'
+  - namespace: gitlab-org/
+    project_path: gitlab-org/gitlab
+    repo: gitlab
+    tag: v6.0.0
+  - title: '<https://gitlab.com/gitlab-org/gitlab/-/tags/v6.0.0|60a8ff03>: '
+    text: '<Release notes|https://gitlab.com/gitlab-org/gitlab/-/tags/v6.0.0>'
+    color: '#E24329'
+    ts: 1501060133
+    footer: 'Created by Arthur Verschaeve'
+    fields:
+      - title: Author
+        value: 'Arthur Verschaeve'
+        short: true
+  -
+    - 'GitLab/tag-v6.0.0.json'
 # vim:ts=2:sw=2:et

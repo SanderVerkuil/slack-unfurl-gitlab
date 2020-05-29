@@ -45,6 +45,17 @@ class Tag extends AbstractRouteHandler
      */
     protected function getText(array $object): string
     {
-        return trim($object['release']['description'] ?? $object['commit']['message'], "\t\r ");
+        $string = trim($object['release']['description'] ?? $object['commit']['message'], "\t\r ");
+
+        return $this->formatUrls($string);
+    }
+
+    private function formatUrls(string $text): string
+    {
+        $regexp = "/\[(?<text>[^\[\]]*)\]\((?<url>.*?)\)/";
+
+        preg_match($regexp, $text, $matches);
+
+        return preg_replace($regexp, '<$1|$2>', $text);
     }
 }
