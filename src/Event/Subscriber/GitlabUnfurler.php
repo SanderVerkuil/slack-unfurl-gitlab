@@ -21,6 +21,7 @@ class GitlabUnfurler implements EventSubscriberInterface
         'issue' => Route\Issue::class,
         'merge_request' => Route\MergeRequest::class,
         'note' => Route\Note::class,
+        'tag' => Route\Tag::class,
     ];
 
     /** @var string */

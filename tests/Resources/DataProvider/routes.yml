@@ -192,4 +192,12 @@
     number: 20b59dfb767bc9aca95a2d8c807aeb14bb713139
     id: 226969
 
+-
+  - https://gitlab.com/gitlab-org/gitlab/-/tags/v13.0.3-ee
+  - tag
+  - namespace: gitlab-org/
+    project_path: gitlab-org/gitlab
+    repo: gitlab
+    tag: v13.0.3-ee
+
 # vim:ts=2:sw=2:et

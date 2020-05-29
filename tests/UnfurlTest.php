@@ -74,6 +74,28 @@ class UnfurlTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    /**
+     * @param string $url
+     * @param array $parts
+     * @param array $expected
+     * @param array $responses
+     * @dataProvider tagDataProvider
+     */
+    public function testTag(string $url, array $parts, array $expected, array $responses): void
+    {
+        $router = new GitLabRoutes($this->domain);
+        $match = $router->match($url)[1];
+
+        $this->assertEquals($parts, $match);
+
+        /** @var Route\Tag $unfurler */
+        $unfurler = $this->getRouteHandler(Route\Tag::class, $responses, $history);
+
+        $result = $unfurler->unfurl($url, $parts);
+        $this->assertCount(count($responses), $history);
+        $this->assertEquals($expected, $result);
+    }
+
     private function loadDataProvider(string $name)
     {
         $data = $this->loadYaml($name);
@@ -104,5 +126,10 @@ class UnfurlTest extends TestCase
     public function noteDataProvider(): array
     {
         return $this->loadDataProvider('notes.yml');
+    }
+
+    public function tagDataProvider(): array
+    {
+        return $this->loadDataProvider('tags.yml');
     }
 }

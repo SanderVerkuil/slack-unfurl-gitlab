@@ -53,6 +53,7 @@ class GitLabRoutes extends RouteMatcher
             'merge_request' => "^${nwo}/(?:-/)?merge_requests/(?P<number>\d+)(/(?P<view>commits|pipelines|diffs))?$",
             'account' => "^${base}(?P<account>{$NAMESPACE_FORMAT_REGEX})$",
             'project' => "^${nwo}$",
+            'tag' => "^${nwo}/(?:-/)?tags/(?P<tag>.+?)$"
         ];
     }
 }

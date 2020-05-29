@@ -59,6 +59,7 @@ class GitlabUnfurlServiceProvider implements ServiceProviderInterface, EventList
         $routeFactory(Route\MergeRequest::class);
         $routeFactory(Route\Issue::class);
         $routeFactory(Route\Note::class);
+        $routeFactory(Route\Tag::class);
     }
 
     public function subscribe(Container $app, EventDispatcherInterface $dispatcher): void
