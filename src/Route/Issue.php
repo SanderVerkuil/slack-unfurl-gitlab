@@ -2,8 +2,12 @@
 
 namespace GitlabSlackUnfurl\Route;
 
+use GitlabSlackUnfurl\Traits\MarkdownUrlFormatterTrait;
+
 class Issue extends AbstractRouteHandler
 {
+    use MarkdownUrlFormatterTrait;
+
     protected function getDetails(array $parts): array
     {
         $project_id = $parts['project_path'];
@@ -24,6 +28,6 @@ class Issue extends AbstractRouteHandler
      */
     protected function getText(array $object): string
     {
-        return $this->sanitizeText($object['description']);
+        return $this->sanitizeText($this->formatUrls($object['description']));
     }
 }

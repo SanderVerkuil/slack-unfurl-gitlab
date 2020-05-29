@@ -3,11 +3,14 @@
 namespace GitlabSlackUnfurl\Route;
 
 use Gitlab\Api\Projects;
+use GitlabSlackUnfurl\Traits\MarkdownUrlFormatterTrait;
 use InvalidArgumentException;
 use RuntimeException;
 
 class Note extends AbstractRouteHandler
 {
+    use MarkdownUrlFormatterTrait;
+
     /**
      * @see https://docs.gitlab.com/ce/api/notes.html#get-single-issue-note
      * @param array $parts
@@ -107,7 +110,7 @@ class Note extends AbstractRouteHandler
      */
     protected function getText(array $object): string
     {
-        return $object['body'];
+        return $this->formatUrls($object['body']);
     }
 
     protected function getFields(array $object): array

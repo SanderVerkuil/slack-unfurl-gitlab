@@ -2,8 +2,12 @@
 
 namespace GitlabSlackUnfurl\Route;
 
+use GitlabSlackUnfurl\Traits\MarkdownUrlFormatterTrait;
+
 class MergeRequest extends AbstractRouteHandler
 {
+    use MarkdownUrlFormatterTrait;
+
     protected function getDetails(array $parts): array
     {
         $merge_request = $this->apiClient->merge_requests->show($parts['project_path'], $parts['number']);
@@ -21,6 +25,6 @@ class MergeRequest extends AbstractRouteHandler
      */
     protected function getText(array $object): string
     {
-        return $object['description'];
+        return $this->formatUrls($object['description']);
     }
 }

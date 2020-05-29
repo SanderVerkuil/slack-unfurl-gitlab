@@ -5,9 +5,12 @@ namespace GitlabSlackUnfurl\Route;
 
 
 use Generator;
+use GitlabSlackUnfurl\Traits\MarkdownUrlFormatterTrait;
 
 class Tag extends AbstractRouteHandler
 {
+    use MarkdownUrlFormatterTrait;
+
     protected function getDetails(array $parts): array
     {
         $tag = $this->apiClient->tags->show($parts['project_path'], $parts['tag']);
@@ -48,14 +51,5 @@ class Tag extends AbstractRouteHandler
         $string = trim($object['release']['description'] ?? $object['commit']['message'], "\t\r ");
 
         return $this->formatUrls($string);
-    }
-
-    private function formatUrls(string $text): string
-    {
-        $regexp = "/\[(?<text>[^\[\]]*)\]\((?<url>.*?)\)/";
-
-        preg_match($regexp, $text, $matches);
-
-        return preg_replace($regexp, '<$1|$2>', $text);
     }
 }
